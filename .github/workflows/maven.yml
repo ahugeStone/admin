@@ -17,7 +17,7 @@ jobs:
       run: |
         mvn clean package
     - name : Upload artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: ipps-admin
-          path: target/*.jar
+      uses: actions/upload-artifact@v1
+      with:
+        name: ipps-admin
+        path: target/*.jar
