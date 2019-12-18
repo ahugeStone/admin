@@ -18,4 +18,4 @@ jobs:
         sudo -E apt-get update
         sudo -E apt-get -y install nodejs
         sudo -E apt-get clean
-        mvn -B package --file pom.xml
+        mvn clean package
