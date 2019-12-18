@@ -118,12 +118,12 @@
                     </execution>
                     <!-- Build and minify static files -->
                     <execution>
-                        <id>npm run build:prod</id>
+                        <id>npm run build</id>
                         <goals>
                             <goal>npm</goal>
                         </goals>
                         <configuration>
-                            <arguments>run build</arguments>
+                            <arguments>run build:prod</arguments>
                         </configuration>
                     </execution>
                 </executions>
