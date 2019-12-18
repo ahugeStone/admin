@@ -139,13 +139,14 @@
 					<execution>
 						<id>copy-spring-boot-webapp</id>
 						<!-- here the phase you need -->
-						<phase>validate</phase>
+						<phase>generate-resources</phase>
 						<goals>
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
 							<encoding>utf-8</encoding>
-							<outputDirectory>${basedir}/src/main/resources/static</outputDirectory>
+							<outputDirectory>${basedir}/src/main/resources/public</outputDirectory>
+                            <overwrite>true</overwrite>
 							<resources>
 								<resource>
 									<directory>${basedir}/src/main/webapp/dist</directory>
