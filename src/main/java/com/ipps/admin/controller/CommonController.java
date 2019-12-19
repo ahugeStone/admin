@@ -1,6 +1,10 @@
 package com.ipps.admin.controller;
 
+import cn.hutool.core.bean.BeanUtil;
+import com.ipps.admin.entity.UserEntity;
+import com.ipps.admin.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,8 +28,15 @@ import java.util.Map;
 @RestController
 @RequestMapping("/prod-api")
 public class CommonController {
+    @Autowired
+    UserService userService;
+
     @RequestMapping(path="/user/login",method = { RequestMethod.POST })
     public Map<String, Object> login() {
+
+        UserEntity user = userService.getByLoginName("admin");
+        log.info(user.toString());
+
         Map<String, Object> result = new HashMap<>();
         Map<String, Object> data = new HashMap<>();
         data.put("token", "admin-token");
@@ -34,16 +45,24 @@ public class CommonController {
         return result;
     }
 
+    @RequestMapping(path="/user/logout",method = { RequestMethod.POST })
+    public Map<String, Object> logout() {
+        Map<String, Object> result = new HashMap<>();
+        result.put("code",20000);
+        result.put("data","success");
+        return result;
+    }
+
     @RequestMapping(path="/user/info",method = { RequestMethod.GET })
     public Map<String, Object> info() {
+
+        UserEntity user = userService.getByLoginName("admin");
+
         Map<String, Object> result = new HashMap<>();
-        Map<String, Object> data = new HashMap<>();
+        Map<String, Object> data = BeanUtil.beanToMap(user);
         List<String> items = new ArrayList();
         items.add("admin");
         data.put("roles", items);
-        data.put("introduction", "I am a super administrator");
-        data.put("avatar", "null");
-        data.put("name", "Super Admin");
         result.put("code",20000);
         result.put("data",data);
         return result;

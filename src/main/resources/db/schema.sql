@@ -1,7 +1,11 @@
+drop table USER;
 create table if not exists USER (
-	ID int not null primary key auto_increment,
-	NAME varchar(100),
-	CRT_TIME DATE,
-	MOD_TIME DATE,
-	STATUS varchar(1)
+	id int not null primary key auto_increment,
+	loginName varchar(100),
+	name varchar(100),
+	introduction varchar(100),
+	avatar varchar(500),
+	crtTime DATE,
+	modTime DATE,
+	status varchar(1)
 );
